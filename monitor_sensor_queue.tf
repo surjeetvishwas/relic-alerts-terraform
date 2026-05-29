@@ -296,7 +296,7 @@ resource "newrelic_nrql_alert_condition" "sensor_deprecated_queue_high" {
 
 resource "newrelic_nrql_alert_condition" "sensor_machineq_api_calls" {
   account_id                     = var.newrelic_account_id
-  policy_id                      = var.production_sensor_integration_outage_policy
+  policy_id                      = newrelic_alert_policy.sensors_queue_warning.id
   type                           = "static"
   name                           = "Sensor Event Readings (Monnit, MachineQ)${local.name_suffix_label}"
   description                    = "Sensor event readings endpoint not getting calls"

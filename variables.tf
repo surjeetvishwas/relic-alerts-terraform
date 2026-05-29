@@ -29,11 +29,6 @@ variable "ops_genie_nr_channel_id" {
   type        = number
 }
 
-variable "production_sensor_integration_outage_policy" {
-  description = "New Relic alert policy ID for sensor integration outage alerts."
-  type        = number
-}
-
 variable "kubernetes_alert_policy_id" {
   description = "New Relic alert policy ID for Kubernetes alerts."
   type        = number
