@@ -118,20 +118,30 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_request_queui
 }
 
 
-resource "newrelic_alert_condition" "production_apdex_critical" {
-  policy_id       = newrelic_alert_policy.production_performance_critical.id
-  type            = "apm_app_metric"
-  entities        = [data.newrelic_entity.production_zenput.application_id]
-  name            = "Apdex Score below 0.65 for 8min"
-  metric          = "apdex"
-  enabled         = true
-  condition_scope = "application"
-  term {
-    duration      = 8 # minutes
-    operator      = "below"
-    priority      = "critical"
-    threshold     = "0.65"
-    time_function = "all"
+resource "newrelic_nrql_alert_condition" "production_apdex_critical" {
+  account_id                   = var.newrelic_account_id
+  policy_id                    = newrelic_alert_policy.production_performance_critical.id
+  type                         = "static"
+  name                         = "Apdex Score below 0.65 for 8min"
+  description                  = "Apdex score below 0.65 for 8 minutes."
+  enabled                      = true
+  aggregation_method           = "event_flow"
+  aggregation_window           = 60
+  aggregation_delay            = 120
+  expiration_duration          = 300
+  violation_time_limit_seconds = 21600
+  open_violation_on_expiration = true
+  fill_option                  = "none"
+
+  nrql {
+    query = "SELECT apdex(duration, t: 0.5) FROM Transaction WHERE appName='${var.production_app_name}'"
+  }
+
+  critical {
+    operator              = "below"
+    threshold             = 0.65
+    threshold_duration    = 480
+    threshold_occurrences = "ALL"
   }
 }
 

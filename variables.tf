@@ -34,6 +34,11 @@ variable "production_sensor_integration_outage_policy" {
   type        = number
 }
 
+variable "kubernetes_alert_policy_id" {
+  description = "New Relic alert policy ID for Kubernetes alerts."
+  type        = number
+}
+
 variable "sensors_runbook_url" {
   description = "Runbook URL used by sensor queue alerts."
   type        = string
