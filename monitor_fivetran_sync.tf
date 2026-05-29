@@ -3,7 +3,7 @@ resource "newrelic_nrql_alert_condition" "fivetran_logs_failed_warning" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.fivetran_logs_warning.id
   type                         = "static"
-  name                         = "Fivetran logs error anomaly"
+  name                         = "Fivetran logs error anomaly${local.name_suffix_label}"
   description                  = "Fivetran logs returned an error on the mongo_production connector"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -31,7 +31,7 @@ resource "newrelic_nrql_alert_condition" "fivetran_logs_failed_warning_mysql" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.fivetran_logs_warning.id
   type                         = "static"
-  name                         = "Fivetran logs error anomaly"
+  name                         = "Fivetran logs error anomaly${local.name_suffix_label}"
   description                  = "Fivetran logs returned an error on the mysql_rds_production_2 connector or zenput_production_mysql_biziq connector"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -59,7 +59,7 @@ resource "newrelic_nrql_alert_condition" "no_logs_from_fivetran_in_the_last_time
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.fivetran_logs_warning.id
   type       = "static"
-  name       = "No logs from Fivetran in the last time period"
+  name       = "No logs from Fivetran in the last time period${local.name_suffix_label}"
 
   description = trimspace(<<-EOT
   Fivetran has not logged any updates in the preceding time period. Check that Fivetran is up and syncing

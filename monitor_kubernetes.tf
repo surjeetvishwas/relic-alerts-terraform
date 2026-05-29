@@ -2,7 +2,7 @@ resource "newrelic_nrql_alert_condition" "container_is_running_out_of_space" {
   account_id                   = var.newrelic_account_id
   policy_id                    = var.kubernetes_alert_policy_id
   type                         = "static"
-  name                         = "Container is running out of space"
+  name                         = "Container is running out of space${local.name_suffix_label}"
   enabled                      = true
   violation_time_limit_seconds = 86400
   fill_option                  = "none"

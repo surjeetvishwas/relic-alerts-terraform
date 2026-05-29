@@ -6,7 +6,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_mongo_db_crit
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_critical.id
   type                         = "static"
-  name                         = "MongoDB response time anomaly"
+  name                         = "MongoDB response time anomaly${local.name_suffix_label}"
   description                  = "MongoDB response time above 5ms for 15min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -35,7 +35,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_mysql_critica
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_critical.id
   type                         = "static"
-  name                         = "MySQL response time anomaly"
+  name                         = "MySQL response time anomaly${local.name_suffix_label}"
   description                  = "MySQL response time above 500ms for 10min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -64,7 +64,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_elasticsearch
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_critical.id
   type                         = "static"
-  name                         = "ElasticSearch response time anomaly"
+  name                         = "ElasticSearch response time anomaly${local.name_suffix_label}"
   description                  = "ElasticSearch response time above 15ms for 10min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -93,7 +93,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_request_queui
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_critical.id
   type                         = "static"
-  name                         = "Request Queuing time anomaly"
+  name                         = "Request Queuing time anomaly${local.name_suffix_label}"
   description                  = "Request Queuing time above 100ms for 10min"
   enabled                      = false
   aggregation_method           = "event_flow"
@@ -122,7 +122,7 @@ resource "newrelic_nrql_alert_condition" "production_apdex_critical" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_critical.id
   type                         = "static"
-  name                         = "Apdex Score below 0.65 for 8min"
+  name                         = "Apdex Score below 0.65 for 8min${local.name_suffix_label}"
   description                  = "Apdex score below 0.65 for 8 minutes."
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -150,7 +150,7 @@ resource "newrelic_nrql_alert_condition" "sso_errors_during_login_redirect" {
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.production_performance_critical.id
   type       = "static"
-  name       = "SSO errors during login redirect"
+  name       = "SSO errors during login redirect${local.name_suffix_label}"
 
   description = "SSO failures over a 5 minute time period"
 
@@ -178,7 +178,7 @@ resource "newrelic_nrql_alert_condition" "porter_worker_killed_run_out_of_memory
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.production_performance_critical.id
   type       = "static"
-  name       = "Porter worker killed after running out of memory"
+  name       = "Porter worker killed after running out of memory${local.name_suffix_label}"
 
   description = "One or more Porter instances has been killed after running out of memory. If this incident is critical look into changing the size/scaling of the Porter instance, or the MAX_MEMORY_PER_NODE and MAX_TASKS_PER_NODE for the worker. For now more information can be found here `scripts/launch_worker.sh`"
 

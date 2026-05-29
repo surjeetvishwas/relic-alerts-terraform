@@ -4,7 +4,7 @@ resource "newrelic_nrql_alert_condition" "sensor_triggers_queue_low" {
   account_id                     = var.newrelic_account_id
   policy_id                      = newrelic_alert_policy.sensors_queue_critial.id
   type                           = "static"
-  name                           = "Sensor Triggers queue at 0 for 60 minutes"
+  name                           = "Sensor Triggers queue at 0 for 60 minutes${local.name_suffix_label}"
   description                    = "The queue is low for more than 60 minutes"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = false
@@ -36,7 +36,7 @@ resource "newrelic_nrql_alert_condition" "sensor_senet_queue_low" {
   account_id                     = var.newrelic_account_id
   policy_id                      = newrelic_alert_policy.sensors_queue_critial.id
   type                           = "static"
-  name                           = "Sensor Senet queue at 0 for 15 minutes"
+  name                           = "Sensor Senet queue at 0 for 15 minutes${local.name_suffix_label}"
   description                    = "The queue is low for more than 15 minutes"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = false
@@ -67,7 +67,7 @@ resource "newrelic_nrql_alert_condition" "sensor_machineq_queue_low" {
   account_id                     = var.newrelic_account_id
   policy_id                      = newrelic_alert_policy.sensors_queue_critial.id
   type                           = "static"
-  name                           = "Sensor MachineQ queue at 0 for 30 minutes"
+  name                           = "Sensor MachineQ queue at 0 for 30 minutes${local.name_suffix_label}"
   description                    = "The queue is low for more than 30 minutes"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = false
@@ -98,7 +98,7 @@ resource "newrelic_nrql_alert_condition" "sensor_monnit_queue_low" {
   account_id                     = var.newrelic_account_id
   policy_id                      = newrelic_alert_policy.sensors_queue_critial.id
   type                           = "static"
-  name                           = "Sensor Monnit queue at 0 for 35 minutes"
+  name                           = "Sensor Monnit queue at 0 for 35 minutes${local.name_suffix_label}"
   description                    = "The queue is low for more than 35 minutes"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = false
@@ -129,7 +129,7 @@ resource "newrelic_nrql_alert_condition" "sensor_deprecated_queue_low" {
   account_id                     = var.newrelic_account_id
   policy_id                      = newrelic_alert_policy.sensors_queue_critial.id
   type                           = "static"
-  name                           = "Sensor Deprecated queue at 0 for 150 minutes"
+  name                           = "Sensor Deprecated queue at 0 for 150 minutes${local.name_suffix_label}"
   description                    = "The queue is low for more than 150 minutes"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = false
@@ -160,7 +160,7 @@ resource "newrelic_nrql_alert_condition" "sensor_triggers_queue_high" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.sensors_queue_warning.id
   type                         = "static"
-  name                         = "Sensor Triggers queue above 150 messages"
+  name                         = "Sensor Triggers queue above 150 messages${local.name_suffix_label}"
   description                  = "The queue is high for more than 20 minutes"
   runbook_url                  = var.sensors_runbook_url
   enabled                      = true
@@ -188,7 +188,7 @@ resource "newrelic_nrql_alert_condition" "sensor_senet_queue_high" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.sensors_queue_warning.id
   type                         = "static"
-  name                         = "Sensor Senet queue above 800 messages"
+  name                         = "Sensor Senet queue above 800 messages${local.name_suffix_label}"
   description                  = "The queue is high for more than 20 minutes"
   runbook_url                  = var.sensors_runbook_url
   enabled                      = true
@@ -216,7 +216,7 @@ resource "newrelic_nrql_alert_condition" "sensor_machineq_queue_high" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.sensors_queue_warning.id
   type                         = "static"
-  name                         = "Sensor MachineQ queue above 800 messages"
+  name                         = "Sensor MachineQ queue above 800 messages${local.name_suffix_label}"
   description                  = "The queue is high for more than 20 minutes"
   runbook_url                  = var.sensors_runbook_url
   enabled                      = true
@@ -244,7 +244,7 @@ resource "newrelic_nrql_alert_condition" "sensor_monnit_queue_high" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.sensors_queue_warning.id
   type                         = "static"
-  name                         = "Sensor Monnit queue above 800 messages"
+  name                         = "Sensor Monnit queue above 800 messages${local.name_suffix_label}"
   description                  = "The queue is high for more than 20 minutes"
   runbook_url                  = var.sensors_runbook_url
   enabled                      = true
@@ -272,7 +272,7 @@ resource "newrelic_nrql_alert_condition" "sensor_deprecated_queue_high" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.sensors_queue_warning.id
   type                         = "static"
-  name                         = "Sensor Deprecated queue above 50 messages."
+  name                         = "Sensor Deprecated queue above 50 messages.${local.name_suffix_label}"
   description                  = "The queue is high for more than 15 minutes."
   runbook_url                  = var.sensors_runbook_url
   enabled                      = true
@@ -298,7 +298,7 @@ resource "newrelic_nrql_alert_condition" "sensor_machineq_api_calls" {
   account_id                     = var.newrelic_account_id
   policy_id                      = var.production_sensor_integration_outage_policy
   type                           = "static"
-  name                           = "Sensor Event Readings (Monnit, MachineQ)"
+  name                           = "Sensor Event Readings (Monnit, MachineQ)${local.name_suffix_label}"
   description                    = "Sensor event readings endpoint not getting calls"
   runbook_url                    = var.sensors_runbook_url
   enabled                        = true

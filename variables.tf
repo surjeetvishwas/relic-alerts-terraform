@@ -48,3 +48,9 @@ variable "nightly_queue_runbook_url" {
   description = "Runbook URL used by nightly queue alerts."
   type        = string
 }
+
+variable "name_suffix" {
+  description = "Suffix added to New Relic policy and alert names to avoid naming conflicts."
+  type        = string
+  default     = "beta1"
+}

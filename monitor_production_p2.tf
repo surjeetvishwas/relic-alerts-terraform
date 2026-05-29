@@ -8,7 +8,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_mongo_db_warn
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_warning.id
   type                         = "static"
-  name                         = "MongoDB response time anomaly (P2)"
+  name                         = "MongoDB response time anomaly (P2)${local.name_suffix_label}"
   description                  = "MongoDB response time above 1ms for 10min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -37,7 +37,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_mysql_warning
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_warning.id
   type                         = "static"
-  name                         = "MySQL response time anomaly (P2)"
+  name                         = "MySQL response time anomaly (P2)${local.name_suffix_label}"
   description                  = "MySQL response time above 350ms for 5min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -66,7 +66,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_elasticsearch
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_warning.id
   type                         = "static"
-  name                         = "ElasticSearch response time anomaly (P2)"
+  name                         = "ElasticSearch response time anomaly (P2)${local.name_suffix_label}"
   description                  = "ElasticSearch response time above 6.5ms for 15min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -95,7 +95,7 @@ resource "newrelic_nrql_alert_condition" "apm_service_overview_web_request_queui
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_warning.id
   type                         = "static"
-  name                         = "Request Queuing time anomaly (P2)"
+  name                         = "Request Queuing time anomaly (P2)${local.name_suffix_label}"
   description                  = "Request Queuing time above 50ms for 10min"
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -124,7 +124,7 @@ resource "newrelic_nrql_alert_condition" "production_apdex_warning" {
   account_id                   = var.newrelic_account_id
   policy_id                    = newrelic_alert_policy.production_performance_warning.id
   type                         = "static"
-  name                         = "Apdex Score below 0.7 for 5 min (P2)"
+  name                         = "Apdex Score below 0.7 for 5 min (P2)${local.name_suffix_label}"
   description                  = "Apdex score below 0.7 for 5 minutes."
   enabled                      = true
   aggregation_method           = "event_flow"
@@ -152,7 +152,7 @@ resource "newrelic_nrql_alert_condition" "elevated_global_error_rates" {
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.production_performance_warning.id
   type       = "static"
-  name       = "Elevated global error rates (web and Celery included)"
+  name       = "Elevated global error rates (web and Celery included)${local.name_suffix_label}"
 
   description = trimspace(<<-EOT
   When this alert fires, take a look at the Errors Inbox in New Relic for more information.
@@ -184,7 +184,7 @@ resource "newrelic_nrql_alert_condition" "follow_up_action_creation_failure" {
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.production_performance_warning.id
   type       = "static"
-  name       = "Follow-up action creation by submission failed silently"
+  name       = "Follow-up action creation by submission failed silently${local.name_suffix_label}"
 
   description = trimspace(<<-EOT
   Resubmitting the associated submission will rerun the failed follow-up actions.
@@ -216,7 +216,7 @@ resource "newrelic_nrql_alert_condition" "porter_worker_killed_run_out_of_memory
   account_id = var.newrelic_account_id
   policy_id  = newrelic_alert_policy.production_performance_warning.id
   type       = "static"
-  name       = "P2 - Porter worker killed after running out of memory"
+  name       = "P2 - Porter worker killed after running out of memory${local.name_suffix_label}"
 
   description = "One or more Porter instances has been killed after running out of memory. If this incident is critical look into changing the size/scaling of the Porter instance, or the MAX_MEMORY_PER_NODE and MAX_TASKS_PER_NODE for the worker. For now more information can be found here `scripts/launch_worker.sh`"
 
